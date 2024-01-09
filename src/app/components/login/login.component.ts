@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Credenciais } from 'src/app/models/credenciais';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,20 +20,18 @@ export class LoginComponent {
   email = new FormControl(null, Validators.email);
   senha = new FormControl(null, Validators.minLength(8));
 
-  constructor(private toast: ToastrService){
-
-  }
+  constructor(private toast: ToastrService, private service: AuthService, private router: Router){}
 
   logar(){
-    this.toast.error('Usuário e/ou senha invalidos!!', 'Login');
-    this.creds.senha = '';
+    this.service.authenticate(this.creds).subscribe(resposta => {
+      this.service.sucessFullLogin(resposta.headers.get('Authorization').substring(7))
+      this.router.navigate([''])
+    }, () => {
+      this.toast.error('Usuário e/ou senha inválidos!!', 'Login')
+    });
   }
 
   validaCampos(): boolean{
-    if(this.email.valid && this.senha.valid){
-      return true;
-    }else {
-      return false;
-    }
+    return this.email.valid && this.senha.valid;
   }
 }

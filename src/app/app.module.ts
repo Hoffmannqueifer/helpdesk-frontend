@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 // Para realizar requisições HTTP
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 // Imports para componentes do Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -68,7 +68,8 @@ import { ToastrModule } from 'ngx-toastr';
       timeOut: 4000,
       closeButton: true,
       progressBar: true
-    })
+    }),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
