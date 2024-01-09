@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private http:HttpClient) { }
 
   authenticate(creds: Credenciais){
-    return this.http.post(`${API_CONFIG.baseUrl}/login`, creds, {
+    return this.http.post('/login', creds, {
       observe: 'response',
       responseType: 'text'
     })
@@ -30,5 +30,9 @@ export class AuthService {
       return !this.jwtService.isTokenExpired(token);
     }
     return false;
+  }
+
+  logout(){
+    localStorage.clear();
   }
 }
