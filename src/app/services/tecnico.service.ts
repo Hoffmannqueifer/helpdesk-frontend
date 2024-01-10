@@ -13,4 +13,8 @@ export class TecnicoService {
   findAll(): Observable<Tecnico[]>{
     return this.http.get<Tecnico[]>('/tecnicos');
   }
+
+  create(tecnico : Tecnico): Observable<Tecnico>{
+    return this.http.post<Tecnico>('/tecnicos', tecnico);
+  }
 }
