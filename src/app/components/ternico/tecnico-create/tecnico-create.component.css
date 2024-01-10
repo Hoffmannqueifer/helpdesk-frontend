@@ -25,6 +25,9 @@ img {
 }
 
 .btCadastrar{
-    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(37,97,207,1) 0%, rgba(0,212,255,1) 100%);
     margin-right: 1rem;
+}
+
+mat-icon{
+    opacity: .8;
 }
