@@ -17,4 +17,12 @@ export class TecnicoService {
   create(tecnico : Tecnico): Observable<Tecnico>{
     return this.http.post<Tecnico>('/tecnicos', tecnico);
   }
+
+  findById(id: any): Observable<Tecnico>{
+    return this.http.get<Tecnico>(`/tecnicos/${id}`);
+  }
+
+  update(tecnico: Tecnico): Observable<Tecnico>{
+    return this.http.put<Tecnico>(`/tecnicos/${tecnico.id}`, tecnico);
+  }
 }
